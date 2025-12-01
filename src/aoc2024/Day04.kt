@@ -1,3 +1,8 @@
+package aoc2024
+
+import println
+import readInput
+
 fun main() {
 
 
@@ -95,11 +100,11 @@ fun main() {
     }
 
 
-    val testInput = readInput("Day04_test")
+    val testInput = readInput("2024", "Day04_test")
     check(part1(testInput) == 18)
     check(part2(testInput) == 9)
 
-    val input = readInput("Day04")
+    val input = readInput("2024", "Day04")
     part1(input).println()
     part2(input).println()
 }

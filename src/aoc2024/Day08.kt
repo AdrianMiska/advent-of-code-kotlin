@@ -1,3 +1,12 @@
+package aoc2024
+
+import isInBounds
+import minus
+import pairwise
+import plus
+import println
+import readInput
+
 class Antenna(private val coordinates: Pair<Int, Int>, val frequency: Char) {
 
     fun getAntinode(other: Antenna): Pair<Int, Int> {
@@ -67,8 +76,8 @@ fun main() {
     }
 
 
-    val testInput = readInput("Day08_test")
-    val input = readInput("Day08")
+    val testInput = readInput("2024", "Day08_test")
+    val input = readInput("2024", "Day08")
 
     check(part1(testInput) == 14)
     part1(input).println()

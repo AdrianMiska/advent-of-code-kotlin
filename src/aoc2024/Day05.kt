@@ -1,3 +1,7 @@
+package aoc2024
+
+import println
+import readInput
 import java.util.Comparator
 
 fun main() {
@@ -39,11 +43,11 @@ fun main() {
     }
 
 
-    val testInput = readInput("Day05_test")
+    val testInput = readInput("2024", "Day05_test")
     check(part1(testInput) == 143)
     check(part2(testInput) == 123)
 
-    val input = readInput("Day05")
+    val input = readInput("2024", "Day05")
     part1(input).println()
     part2(input).println()
 }

@@ -1,3 +1,8 @@
+package aoc2024
+
+import println
+import readInput
+
 fun main() {
 
     fun String.executeInstruction(): Int {
@@ -51,12 +56,12 @@ fun main() {
     }
 
 
-    val testInput1 = readInput("Day03_test1")
-    val testInput2 = readInput("Day03_test2")
+    val testInput1 = readInput("2024", "Day03_test1")
+    val testInput2 = readInput("2024", "Day03_test2")
     check(part1(testInput1) == 161)
     check(part2(testInput2) == 48)
 
-    val input = readInput("Day03")
+    val input = readInput("2024", "Day03")
     part1(input).println()
     part2(input).println()
 }

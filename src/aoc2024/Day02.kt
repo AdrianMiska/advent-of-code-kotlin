@@ -1,3 +1,10 @@
+package aoc2024
+
+import allDecreasing
+import allIncreasing
+import dropIndex
+import println
+import readInput
 import kotlin.math.abs
 
 fun main() {
@@ -45,11 +52,11 @@ fun main() {
     }
 
 
-    val testInput = readInput("Day02_test")
+    val testInput = readInput("2024", "Day02_test")
     check(part1(testInput) == 2)
     check(part2(testInput) == 4)
 
-    val input = readInput("Day02")
+    val input = readInput("2024", "Day02")
     part1(input).println()
     part2(input).println()
 }

@@ -1,3 +1,8 @@
+package aoc2024
+
+import dropIndex
+import println
+import readInput
 import java.math.BigInteger
 
 class Equation(input: String, private val operators: CharArray) {
@@ -47,8 +52,8 @@ fun main() {
     }
 
 
-    val testInput = readInput("Day07_test")
-    val input = readInput("Day07")
+    val testInput = readInput("2024", "Day07_test")
+    val input = readInput("2024", "Day07")
 
     check(part1(testInput) == "3749".toBigInteger())
     part1(input).println()

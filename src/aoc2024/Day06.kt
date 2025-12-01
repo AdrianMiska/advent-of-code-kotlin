@@ -1,3 +1,10 @@
+package aoc2024
+
+import get
+import isInBounds
+import println
+import readInput
+
 enum class GridElement {
     FREE,
     OBSTRUCTION
@@ -120,8 +127,8 @@ fun main() {
     }
 
 
-    val testInput = readInput("Day06_test")
-    val input = readInput("Day06")
+    val testInput = readInput("2024", "Day06_test")
+    val input = readInput("2024", "Day06")
 
     check(part1(testInput) == 41)
     part1(input).println()
