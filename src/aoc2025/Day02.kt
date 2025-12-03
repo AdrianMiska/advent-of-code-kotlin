@@ -5,47 +5,37 @@ import readInput
 
 fun main() {
 
-    fun getRange(range: String): LongRange {
-        val ends = range.split("-")
+    fun String.asRange(): LongRange {
+        val ends = this.split("-")
+        if (ends.size != 2) throw IllegalArgumentException("$this is not a valid range")
         return ends.first().toLong()..ends.last().toLong()
     }
 
-    fun isRepeatedTwice(n: Number): Boolean {
+    fun Number.isRepeated(times: Int): Boolean {
 
-        val stringRep = n.toString()
-        if (stringRep.length % 2 != 0) return false
+        val stringRep = this.toString()
+        if (stringRep.length % times != 0) return false
 
-        val split1 = stringRep.slice(0..stringRep.lastIndex / 2)
-        val split2 = stringRep.slice(stringRep.length / 2..stringRep.lastIndex)
+        val seqLen = stringRep.length / times
 
-        return split1 == split2
+        val chunked = stringRep.chunked(seqLen)
+        return chunked.all { it == chunked.first() }
     }
 
-    fun isRepeatedAtLeastTwice(n: Number): Boolean {
-        val stringRep = n.toString()
-
-        for (seqLen in 1..stringRep.length) {
-            val seq = stringRep.substring(0, seqLen)
-            val chunked = stringRep.chunked(seqLen)
-            if (chunked.any { it != seq }) continue
-            if (chunked.count { it == seq } >= 2) return true
-        }
-
-        return false
+    fun Number.isRepeatedAtLeast(min: Int): Boolean {
+        return (min..this.toString().length).any { times -> this.isRepeated(times) }
     }
 
     fun part1(input: String): Number {
-        val ranges = input.split(",").map { getRange(it) }
-        val invalidIds = ranges.flatMap { range -> range.filter { isRepeatedTwice(it) } }
+        val ranges = input.split(",").map { it.asRange() }
+        val invalidIds = ranges.flatMap { range -> range.filter { it.isRepeated(2) } }
 
         return invalidIds.sum()
     }
 
     fun part2(input: String): Number {
-        val ranges = input.split(",").map { getRange(it) }
-        val invalidIds = ranges.flatMap { range -> range.filter { isRepeatedAtLeastTwice(it) } }
-
-        invalidIds.println()
+        val ranges = input.split(",").map { it.asRange() }
+        val invalidIds = ranges.flatMap { range -> range.filter { it.isRepeatedAtLeast(2) } }
 
         return invalidIds.sum()
     }
