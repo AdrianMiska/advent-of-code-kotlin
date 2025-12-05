@@ -56,3 +56,34 @@ operator fun Pair<Int, Int>.plus(other: Pair<Int, Int>): Pair<Int, Int> {
 fun <T> List<T>.pairwise(): List<Pair<T, T>> {
     return this.flatMap { first -> this.mapNotNull { second -> if (first != second) first to second else null } }
 }
+
+fun <T> List<List<T>>.windowed2D(size: Int): List<List<List<T>>> {
+    val rowCount = this.size
+    val colCount = this.maxOf { it.size }
+
+    val windows = emptyList<List<List<T>>>().toMutableList()
+
+    for (x in 0..rowCount - size) {
+        for (y in 0..colCount - size) {
+            windows.add(List(size) { colIndex ->
+                List(size) { rowIndex ->
+                    this[y + colIndex][x + rowIndex]
+                }
+            })
+        }
+    }
+
+    return windows
+}
+
+fun <T> List<List<T>>.padded(padding: T): List<List<T>> {
+    return this.map {
+        it.toMutableList().also { level ->
+            level.addFirst(padding)
+            level.addLast(padding)
+        }
+    }.toMutableList().also {
+        it.addFirst(MutableList(it[0].size) { padding })
+        it.addLast(MutableList(it[0].size) { padding })
+    }
+}

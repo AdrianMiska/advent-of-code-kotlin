@@ -2,6 +2,7 @@ package aoc2024
 
 import println
 import readInput
+import windowed2D
 
 fun main() {
 
@@ -14,25 +15,6 @@ fun main() {
                 this[rowIndex][colIndex]
             }
         }
-    }
-
-    fun <T> List<List<T>>.chunks(chunkSize: Int): List<List<List<T>>> {
-        val rowCount = this.size
-        val colCount = maxOf { it.size }
-
-        val chunks = emptyList<List<List<T>>>().toMutableList()
-
-        for (x in 0 .. rowCount - chunkSize){
-            for(y in 0 .. colCount - chunkSize){
-                chunks.add(List(chunkSize) { colIndex ->
-                    List(chunkSize) { rowIndex ->
-                        this[y + colIndex][x + rowIndex]
-                    }
-                })
-            }
-        }
-
-        return chunks
     }
 
     fun List<List<Char>>.checkXMas(): Boolean{
@@ -96,7 +78,7 @@ fun main() {
 
     fun part2(input: List<String>): Int {
         val matrix = input.map { it.toList() }
-        return matrix.chunks(3).count { it.checkXMas() }
+        return matrix.windowed2D(3).count { it.checkXMas() }
     }
 
 
