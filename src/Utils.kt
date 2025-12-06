@@ -87,3 +87,13 @@ fun <T> List<List<T>>.padded(padding: T): List<List<T>> {
         it.addLast(MutableList(it[0].size) { padding })
     }
 }
+
+fun <T> List<List<T>>.transpose(): List<List<T>> {
+    val rowCount = size
+    val colCount = maxOf { it.size }
+    return List(colCount) { colIndex ->
+        List(rowCount) { rowIndex ->
+            this[rowIndex][colIndex]
+        }
+    }
+}

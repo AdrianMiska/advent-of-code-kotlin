@@ -2,20 +2,10 @@ package aoc2024
 
 import println
 import readInput
+import transpose
 import windowed2D
 
 fun main() {
-
-
-    fun <T> List<List<T>>.transpose(): List<List<T>> {
-        val rowCount = size
-        val colCount = maxOf { it.size }
-        return List(colCount) { colIndex ->
-            List(rowCount) { rowIndex ->
-                this[rowIndex][colIndex]
-            }
-        }
-    }
 
     fun List<List<Char>>.checkXMas(): Boolean{
         if(this[1][1] != 'A') return false
